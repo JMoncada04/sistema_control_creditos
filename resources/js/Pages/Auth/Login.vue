@@ -89,12 +89,6 @@ const submitRegister = () => {
                                     <span v-if="loginForm.errors.password" class="f-error">{{ loginForm.errors.password }}</span>
                                 </div>
 
-                                <button type="submit" class="btn-primary" :disabled="loginForm.processing"
-                                        style="background:linear-gradient(180deg,#060e1f 0%,#0d1f3c 60%,#060e1f 100%); border-right:1px solid rgba(59,130,246,0.10);">
-                                    <span v-if="loginForm.processing" class="btn-spinner" />
-                                    <span v-else>Iniciar Sesión</span>
-                                </button>
-
                                 <div class="forgot-line">
                                     ¿Has Olvidado tu Contraseña?
                                     <a v-if="canResetPassword" :href="route('password.request')" class="forgot-lnk">
@@ -102,10 +96,16 @@ const submitRegister = () => {
                                     </a>
                                 </div>
 
+                                <button type="submit" class="btn-primary" :disabled="loginForm.processing"
+                                        style=" border-right:1px solid rgba(59,130,246,0.10);">
+                                    <span v-if="loginForm.processing" class="btn-spinner" />
+                                    <span v-else>Iniciar Sesión</span>
+                                </button>
+
                                 <div class="register-line">
                                     Si aún no tienes cuenta
                                 </div>
-                                <button type="button" class="btn-register" @click="activeTab = 'register'" style="background:linear-gradient(180deg,#060e1f 0%,#0d1f3c 60%,#060e1f 100%); border-right:1px solid rgba(59,130,246,0.10);">
+                                <button type="button" class="btn-register" @click="activeTab = 'register'" style="border-right:1px solid rgba(59,130,246,0.10);">
                                     Registrarme
                                 </button>
 
