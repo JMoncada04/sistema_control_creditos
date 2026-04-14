@@ -2,7 +2,6 @@
     <AppLayout title="Tasas de interés">
 
         <v-row>
-            <!-- Formulario -->
             <v-col cols="12" md="4">
                 <v-card class="modern-card pa-5" variant="flat">
                     <div style="font-size:16px;font-weight:600;margin-bottom:16px;">
@@ -53,7 +52,6 @@
                 </v-card>
             </v-col>
 
-            <!-- Tabla de tasas -->
             <v-col cols="12" md="8">
                 <v-card class="modern-card" variant="flat">
                     <v-card-title style="font-size:15px;font-weight:600;padding:16px 20px 12px;">
@@ -94,7 +92,6 @@
             </v-col>
         </v-row>
 
-        <!-- Dialog: Eliminar -->
         <v-dialog v-model="dialogs.eliminar" max-width="400">
             <v-card rounded="lg" class="modern-card">
                 <v-card-title class="pa-5" style="font-size:16px;font-weight:600;">Eliminar tasa</v-card-title>

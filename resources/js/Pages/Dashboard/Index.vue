@@ -1,7 +1,6 @@
 <template>
   <AppLayout title="Dashboard">
 
-    <!-- Saludo + botón PDF -->
     <div class="d-flex align-center justify-space-between mb-6">
       <div>
         <h2 style="font-size:22px;font-weight:700;letter-spacing:-0.4px;">Resumen del negocio</h2>
@@ -13,7 +12,6 @@
       </v-btn>
     </div>
 
-    <!-- ── TARJETAS ESTADÍSTICAS ───────────────────────────────────────── -->
     <v-row class="mb-6">
       <v-col cols="12" sm="6" lg="3" v-for="s in statCards" :key="s.label">
         <v-card class="stat-card-modern pa-5" variant="flat" :style="`border-left:3px solid ${s.color} !important;`">
@@ -33,9 +31,7 @@
       </v-col>
     </v-row>
 
-    <!-- ── GRÁFICAS ───────────────────────────────────────────────────── -->
     <v-row class="mb-6">
-      <!-- Cobros por mes -->
       <v-col cols="12" md="8">
         <v-card class="modern-card" variant="flat">
           <div class="modern-card-header">
@@ -51,7 +47,6 @@
         </v-card>
       </v-col>
 
-      <!-- Dona: estados de cuotas -->
       <v-col cols="12" md="4">
         <v-card class="modern-card" variant="flat" style="height:100%;">
           <div class="modern-card-header">
@@ -78,39 +73,7 @@
       </v-col>
     </v-row>
 
-    <!-- ── TOP PRODUCTOS + CUOTAS PRÓXIMAS ───────────────────────────── -->
     <v-row class="mb-6">
-
-      <!-- Top productos -->
-<!--      <v-col cols="12" md="4">-->
-<!--        <v-card class="modern-card" variant="flat" style="height:100%;">-->
-<!--          <div class="modern-card-header">-->
-<!--            <div>-->
-<!--              <div class="modern-card-title">Top productos vendidos</div>-->
-<!--              <div class="modern-card-sub">A crédito · unidades</div>-->
-<!--            </div>-->
-<!--            <v-icon color="amber" size="20">mdi-trophy-outline</v-icon>-->
-<!--          </div>-->
-<!--          <div class="pa-4">-->
-<!--            <div v-if="!topProductos.length" style="color:#94a3b8;font-size:13px;padding:12px 0;">-->
-<!--              Sin datos de ventas aún.-->
-<!--            </div>-->
-<!--            <div v-for="(p, i) in topProductos" :key="p.nombre"-->
-<!--              class="d-flex align-center gap-3 mb-3">-->
-<!--              <div class="rank-badge" :class="`rank-${i+1}`">{{ i+1 }}</div>-->
-<!--              <div style="flex:1;">-->
-<!--                <div style="font-size:13px;font-weight:500;">{{ p.nombre }}</div>-->
-<!--                <div class="progress-track mt-1">-->
-<!--                  <div class="progress-fill" :style="`width:${(p.vendido/topProductos[0].vendido*100)}%`" />-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <span class="mono" style="font-size:12px;color:#64748b;">{{ p.vendido }} u.</span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </v-card>-->
-<!--      </v-col>-->
-
-      <!-- Cuotas próximas -->
       <v-col cols="12" md="12">
         <v-card class="modern-card" variant="flat">
           <div class="modern-card-header">
@@ -149,16 +112,14 @@
       </v-col>
     </v-row>
 
-    <!-- ── ÚLTIMAS VENTAS + ALERTAS + STOCK ───────────────────────────── -->
     <v-row>
-      <!-- Últimas ventas -->
       <v-col cols="12" md="7">
         <v-card class="modern-card" variant="flat">
           <div class="modern-card-header">
             <div class="modern-card-title">Últimas ventas registradas</div>
             <v-icon color="primary" size="20">mdi-cart-check</v-icon>
           </div>
-          <v-table density="compact">
+          <v-table density="compact" style="max-height: 500px">
             <thead>
               <tr><th>#</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Progreso</th></tr>
             </thead>
@@ -182,34 +143,7 @@
         </v-card>
       </v-col>
 
-      <!-- Alertas + Stock -->
       <v-col cols="12" md="5">
-        <!-- Alertas -->
-        <v-card class="modern-card mb-4" variant="flat">
-          <div class="modern-card-header">
-            <div class="modern-card-title">Alertas activas</div>
-            <v-chip v-if="alertas.length" color="error" variant="tonal" size="small">{{ alertas.length }}</v-chip>
-          </div>
-          <div class="pa-4">
-            <div v-if="!alertas.length" style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">
-              <v-icon color="success" class="mb-1">mdi-check-circle</v-icon><br>Sin alertas activas
-            </div>
-            <div v-for="(a, i) in alertas.slice(0, 4)" :key="i" class="alert-item mb-2">
-              <div class="alert-icon-wrap" :style="`background:${a.color==='error'?'#fee2e2':'#fef3c7'}`">
-                <v-icon :color="a.color" size="16">{{ a.icon }}</v-icon>
-              </div>
-              <div style="flex:1;">
-                <div style="font-size:12px;font-weight:600;">{{ a.titulo }}</div>
-                <div style="font-size:11px;color:#64748b;margin-top:1px;">{{ a.desc }}</div>
-              </div>
-            </div>
-            <div v-if="alertas.length > 4" style="font-size:11px;color:#64748b;text-align:center;padding-top:8px;">
-              +{{ alertas.length - 4 }} alertas más
-            </div>
-          </div>
-        </v-card>
-
-        <!-- Stock bajo -->
         <v-card class="modern-card" variant="flat">
           <div class="modern-card-header">
             <div class="modern-card-title">Productos stock bajo</div>
@@ -240,18 +174,15 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import { router } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 
 const props = defineProps({
   stats:               { type: Object, required: true },
   cobradoPorMes:       { type: Array,  default: () => [] },
   distEstados:         { type: Array,  default: () => [] },
-  topProductos:        { type: Array,  default: () => [] },
   proximasCuotas:      { type: Array,  default: () => [] },
   productosStockBajo:  { type: Array,  default: () => [] },
   ultimasVentas:       { type: Array,  default: () => [] },
-  alertas:             { type: Array,  default: () => [] },
 })
 
 const barCanvas   = ref(null)
@@ -275,8 +206,6 @@ const exportarPDF = () => {
 
 onMounted(async () => {
   await nextTick()
-
-  // Cargar Chart.js dinámicamente
   const script = document.createElement('script')
   script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'
   script.onload = () => {
@@ -285,7 +214,6 @@ onMounted(async () => {
   }
   document.head.appendChild(script)
 })
-
 
 function renderBarChart() {
   if (!barCanvas.value || !window.Chart) return
@@ -357,16 +285,4 @@ function renderDonutChart() {
 
 <style scoped>
 .legend-dot { width:10px; height:10px; border-radius:50%; display:inline-block; flex-shrink:0; }
-.rank-badge {
-  width:24px; height:24px; border-radius:8px; display:flex; align-items:center; justify-content:center;
-  font-size:12px; font-weight:700; flex-shrink:0;
-}
-.rank-1 { background:#fef3c7; color:#92400e; }
-.rank-2 { background:#f1f5f9; color:#475569; }
-.rank-3 { background:#fef9c3; color:#78350f; }
-.rank-4, .rank-5 { background:#f8fafc; color:#94a3b8; }
-.alert-item { display:flex; align-items:flex-start; gap:10px; }
-.alert-icon-wrap {
-  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
 </style>

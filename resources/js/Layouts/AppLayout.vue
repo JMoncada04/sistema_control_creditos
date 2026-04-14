@@ -1,11 +1,9 @@
 <template>
   <v-app theme="light">
 
-    <!-- ─── NAVIGATION DRAWER ─────────────────────────────────────────── -->
     <v-navigation-drawer v-model="drawer" :rail="rail" permanent width="260"
       style="background:linear-gradient(180deg,#060e1f 0%,#0d1f3c 60%,#060e1f 100%); border-right:1px solid rgba(59,130,246,0.10);">
 
-      <!-- Logo (expandido) -->
       <div v-if="!rail" class="sidebar-logo">
         <div class="logo-icon-wrap">
           <v-icon color="white" size="20">mdi-credit-card-multiple</v-icon>
@@ -18,17 +16,14 @@
           class="rail-btn" @click="rail = true" />
       </div>
 
-      <!-- Logo (colapsado) -->
       <div v-else class="sidebar-logo-rail">
         <div class="logo-icon-wrap" style="cursor:pointer;" @click="rail = false">
           <v-icon color="white" size="20">mdi-credit-card-multiple</v-icon>
         </div>
       </div>
 
-      <!-- Etiqueta sección -->
       <div v-if="!rail" class="nav-section-label px-4 mt-3 mb-1">Principal</div>
 
-      <!-- Nav items -->
       <v-list density="compact" nav class="px-2 mt-1">
         <v-list-item
           v-for="item in navItems" :key="item.route"
@@ -57,7 +52,6 @@
               class="nav-item nav-item-logout" rounded="lg" @click="logout" />
           </v-list>
 
-          <!-- Info usuario (solo expandido) -->
           <div v-if="!rail" class="user-info-sidebar mx-2 mt-2">
             <div class="user-avatar-sidebar">{{ userInitials }}</div>
             <div class="user-info-text">
@@ -69,7 +63,6 @@
       </template>
     </v-navigation-drawer>
 
-    <!-- ─── APP BAR ────────────────────────────────────────────────────── -->
     <v-app-bar elevation="0" height="64"
       style="border-bottom:1px solid rgba(0,0,0,0.06); backdrop-filter:blur(8px); background:rgba(255,255,255,0.95);">
 
@@ -82,9 +75,7 @@
 
       <template #append>
         <div class="appbar-right pr-4 d-flex align-center gap-3">
-          <v-chip prepend-icon="mdi-circle" color="success" variant="tonal" size="small">
-            Sistema activo
-          </v-chip>
+
           <v-menu v-model="bellMenu" location="bottom end" :close-on-content-click="false" max-width="320">
             <template #activator="{ props: menuProps }">
               <v-btn icon variant="text" size="small" v-bind="menuProps">
@@ -122,11 +113,9 @@
       </template>
     </v-app-bar>
 
-    <!-- ─── MAIN ───────────────────────────────────────────────────────── -->
     <v-main>
       <v-container fluid class="main-container">
 
-        <!-- Flash snackbar -->
         <v-snackbar v-model="snack.show" :color="snack.color" location="top right"
           rounded="lg" :timeout="3800" elevation="2">
           <div class="d-flex align-center gap-2">
@@ -194,12 +183,10 @@ watch(() => page.props.flash, (flash) => {
 </script>
 
 <style>
-/* ─── Fuentes ─────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 * { font-family: 'Inter', sans-serif !important; }
 .mono, .mono * { font-family: 'JetBrains Mono', monospace !important; }
 
-/* ─── Sidebar logo ────────────────────────────────────────────────────── */
 .sidebar-logo {
   display: flex;
   align-items: center;
@@ -227,13 +214,11 @@ watch(() => page.props.flash, (flash) => {
 .logo-sub   { display: block; font-size: 10px; color: #94a3b8; margin-top: 1px; white-space: nowrap; }
 .rail-btn   { color: #475569 !important; flex-shrink: 0; }
 
-/* ─── Nav section label ───────────────────────────────────────────────── */
 .nav-section-label {
   font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px;
   color: #64748b; font-weight: 600;
 }
 
-/* ─── Nav items ───────────────────────────────────────────────────────── */
 .nav-item {
   color: #64748b !important;
   margin-bottom: 2px !important;
@@ -254,7 +239,6 @@ watch(() => page.props.flash, (flash) => {
 .nav-item-logout:hover { background: rgba(239,68,68,0.08) !important; color: #fca5a5 !important; }
 .nav-badge { font-size: 9px !important; }
 
-/* ─── User info sidebar ───────────────────────────────────────────────── */
 .user-info-sidebar {
   display: flex; align-items: center; gap: 10px;
   padding: 10px 12px;
@@ -274,13 +258,11 @@ watch(() => page.props.flash, (flash) => {
 .user-info-name { font-size: 12px; font-weight: 600; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .user-info-role { font-size: 10px; color: #64748b; }
 
-/* ─── Section label (pasos de formularios) ────────────────────────────── */
 .section-label {
   font-size: 12px; font-weight: 600; color: #64748b;
   text-transform: uppercase; letter-spacing: 0.6px;
 }
 
-/* ─── App Bar ─────────────────────────────────────────────────────────── */
 .appbar-left { flex: 1; }
 .page-breadcrumb { display: flex; align-items: center; }
 .page-title-bar { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
@@ -296,10 +278,8 @@ watch(() => page.props.flash, (flash) => {
 .user-avatar-bar:hover { opacity: 0.85; }
 .user-initials-bar { font-size: 12px; font-weight: 700; color: #fff; }
 
-/* ─── Main container ──────────────────────────────────────────────────── */
 .main-container { padding: 28px 32px !important; max-width: 100% !important; }
 
-/* ─── Badges de estado ────────────────────────────────────────────────── */
 .badge-activo    { background:#dcfce7; color:#166534; border-radius:20px; padding:3px 12px; font-size:11px; font-weight:600; }
 .badge-mora      { background:#fee2e2; color:#991b1b; border-radius:20px; padding:3px 12px; font-size:11px; font-weight:600; }
 .badge-pendiente { background:#fef3c7; color:#92400e; border-radius:20px; padding:3px 12px; font-size:11px; font-weight:600; }
@@ -307,7 +287,6 @@ watch(() => page.props.flash, (flash) => {
 .badge-parcial   { background:#ede9fe; color:#5b21b6; border-radius:20px; padding:3px 12px; font-size:11px; font-weight:600; }
 .badge-anticipado{ background:#dbeafe; color:#1e40af; border-radius:20px; padding:3px 12px; font-size:11px; font-weight:600; }
 
-/* ─── Stat cards ──────────────────────────────────────────────────────── */
 .stat-card-modern {
   border-radius: 16px !important;
   border: 1px solid rgba(0,0,0,0.06) !important;
@@ -320,7 +299,6 @@ watch(() => page.props.flash, (flash) => {
 .stat-value-text { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
 .stat-value-text.money { font-size: 20px; }
 
-/* ─── Tablas ──────────────────────────────────────────────────────────── */
 .v-table thead th {
   font-size: 11px !important; text-transform: uppercase; letter-spacing: 0.6px;
   color: #64748b !important; font-weight: 600 !important;
@@ -330,11 +308,9 @@ watch(() => page.props.flash, (flash) => {
 .v-table tbody td { padding: 12px 16px !important; }
 .v-table tbody tr:hover { background: rgba(59,130,246,0.03) !important; }
 
-/* ─── Progress bars ───────────────────────────────────────────────────── */
 .progress-track { background: #e2e8f0; border-radius: 99px; height: 6px; overflow: hidden; }
 .progress-fill  { height: 100%; border-radius: 99px; background: linear-gradient(90deg,#3b82f6,#6366f1); transition: width .5s ease; }
 
-/* ─── Cards ───────────────────────────────────────────────────────────── */
 .modern-card { border-radius: 16px !important; border: 1px solid rgba(0,0,0,0.06) !important; }
 .modern-card-header {
   padding: 20px 24px 14px;
@@ -344,8 +320,6 @@ watch(() => page.props.flash, (flash) => {
 .modern-card-title { font-size: 15px; font-weight: 600; }
 .modern-card-sub   { font-size: 12px; color: #94a3b8; margin-top: 2px; }
 
-
-/* ─── Inputs outlined — esquinas cuadradas ─────────────────────────────── */
 .v-field--variant-outlined {
   border-radius: 8px !important;
 }
@@ -362,5 +336,4 @@ watch(() => page.props.flash, (flash) => {
 .v-field--variant-outlined.v-field--focused .v-field__outline__notch {
   border-top: none;
 }
-
 </style>

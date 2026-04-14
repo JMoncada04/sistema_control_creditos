@@ -1,7 +1,6 @@
 <template>
   <AppLayout title="Plan de cuotas">
 
-    <!-- Barra de búsqueda y filtros -->
     <div class="d-flex align-center justify-space-between mb-5 flex-wrap gap-3">
       <div class="d-flex align-center gap-3 flex-wrap">
         <v-text-field v-model="search" prepend-icon="mdi-magnify"
@@ -19,7 +18,6 @@
       </div>
     </div>
 
-    <!-- Tabla -->
     <v-card class="modern-card" variant="flat">
       <v-table>
         <thead>
@@ -87,18 +85,15 @@
       </v-table>
     </v-card>
 
-    <!-- Paginación -->
     <div class="d-flex justify-end mt-3">
       <v-pagination v-if="cuotas.last_page > 1"
         :model-value="cuotas.current_page" :length="cuotas.last_page"
         density="compact" @update:model-value="paginar" />
     </div>
 
-    <!-- ─── Dialog: Registrar pago INTELIGENTE ─────────────────────────── -->
     <v-dialog v-model="dialogs.pago" max-width="480">
       <v-card class="modern-card" variant="flat" v-if="cuotaActiva">
 
-        <!-- Header -->
         <div style="background:linear-gradient(135deg,#0a1628,#1e3a5f);padding:20px 24px;border-radius:16px 16px 0 0;">
           <div class="d-flex align-center gap-3">
             <div style="width:40px;height:40px;background:rgba(34,197,94,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;">
@@ -112,7 +107,6 @@
         </div>
 
         <v-card-text class="pa-6">
-          <!-- Info cuota -->
           <div class="cuota-info-box mb-4">
             <div class="info-row">
               <span>Cuota N°</span>
@@ -154,7 +148,6 @@
             </div>
           </div>
 
-          <!-- Datos de tarjeta -->
           <transition name="slide-down">
             <div v-if="metodoPago === 'tarjeta'" class="tarjeta-form mb-4">
               <div class="tarjeta-preview mb-3">
@@ -213,7 +206,6 @@
             </div>
           </transition>
 
-          <!-- Input monto -->
           <v-text-field v-model="montoPago"
             label="Monto recibido (L.)"
             type="number"
@@ -228,7 +220,6 @@
             class="mb-3"
           />
 
-          <!-- Preview inteligente -->
           <transition name="slide-down">
             <div v-if="preview" class="preview-box" :class="preview.tipo">
               <div class="preview-icon">
@@ -249,7 +240,7 @@
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
           <v-btn variant="text" @click="dialogs.pago = false">Cancelar</v-btn>
-          <v-btn color="success" variant="flat" rounded="lg" prepend-icon="mdi-check"
+          <v-btn color="indigo"  variant="flat" rounded="lg" prepend-icon="mdi-check"
             :loading="loading" @click="confirmarPago">
             Confirmar pago
           </v-btn>
@@ -316,11 +307,9 @@ const abrirPago = (c) => {
 const calcularPreview = () => {
   if (!cuotaActiva.value) return
 
-  // ── Tope máximo: total de la deuda completa de la venta ──────────────
   const deudaTotal = parseFloat(cuotaActiva.value.total_deuda_venta) || parseFloat(cuotaActiva.value.total_a_pagar) || 0
   let monto = parseFloat(montoPago.value) || 0
 
-  // Corregir automáticamente si supera la deuda total
   if (monto > deudaTotal) {
     montoPago.value = deudaTotal
     monto = deudaTotal
@@ -346,7 +335,6 @@ const calcularPreview = () => {
       detalle: 'Esta cuota quedará marcada como Pagada completamente.',
     }
   } else {
-    // Excedente que cubre cuotas siguientes (pero no supera la deuda total)
     const excedente = (monto - totalCuota).toFixed(2)
     preview.value = {
       tipo: 'excedente', color: 'info', textColor: '#1d4ed8',
@@ -363,7 +351,6 @@ const formatearExpiracion = () => {
   tarjeta.expiracion = v
 }
 
-// ── Validaciones de teclado ───────────────────────────────────────────────
 const soloNumerosKey = (e) => {
   if (!/\d/.test(e.key)) e.preventDefault()
 }
@@ -371,7 +358,6 @@ const soloLetrasKey = (e) => {
   if (!/[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]/.test(e.key)) e.preventDefault()
 }
 
-// ── Validación completa de tarjeta ───────────────────────────────────────
 const validarTarjeta = () => {
   const errs = {}
   if (!tarjeta.numero || !/^\d{16}$/.test(tarjeta.numero))
@@ -387,7 +373,6 @@ const validarTarjeta = () => {
     if (mes < 1 || mes > 12) {
       errs.expiracion_tarjeta = 'El mes debe ser entre 01 y 12'
     } else {
-      // Último día del mes de expiración (día 0 del mes siguiente en JS)
       const fechaExpiracion = new Date(anio, mes, 0)
       fechaExpiracion.setHours(23, 59, 59, 999)
       if (fechaExpiracion < new Date()) {

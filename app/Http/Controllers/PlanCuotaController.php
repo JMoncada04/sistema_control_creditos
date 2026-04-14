@@ -73,19 +73,16 @@ class PlanCuotaController extends Controller
 
         $totalACobrar  = round((float) $planCuota->total_a_pagar, 2);
 
-        // Calcular deuda total de todas las cuotas pendientes/mora de esta venta
         $totalDeudaVenta = round((float) PlanCuota::where('venta_id', $planCuota->venta_id)
             ->whereIn('estado', ['Pendiente', 'Mora'])
             ->sum('total_a_pagar'), 2);
 
-        // REGLA: no se permite pagar más de lo que se debe en total
         $montoRecibido = min(round((float) $request->monto_recibido, 2), $totalDeudaVenta);
         $tipoPago      = 'completo';
 
         DB::transaction(function () use ($planCuota, $montoRecibido, $totalACobrar, &$tipoPago) {
 
             if ($montoRecibido < $totalACobrar) {
-                // PAGO PARCIAL
                 $tipoPago = 'parcial';
                 $saldoRestante = round($totalACobrar - $montoRecibido, 2);
                 $planCuota->update([
@@ -99,7 +96,6 @@ class PlanCuotaController extends Controller
             }
 
             if (abs($montoRecibido - $totalACobrar) < 0.01) {
-                // PAGO EXACTO
                 $tipoPago = 'completo';
                 $planCuota->update([
                     'monto_pagado'    => $totalACobrar,
@@ -112,7 +108,6 @@ class PlanCuotaController extends Controller
                 return;
             }
 
-            // PAGO CON EXCEDENTE
             $tipoPago = 'anticipado';
             $planCuota->update([
                 'monto_pagado'    => $totalACobrar,
@@ -188,7 +183,6 @@ class PlanCuotaController extends Controller
 
         foreach ($cuotas as $cuota) {
 
-            // ejemplo: mora del 5%
             $recargo = round($cuota->monto_cuota * 0.05, 2);
 
             $cuota->update([

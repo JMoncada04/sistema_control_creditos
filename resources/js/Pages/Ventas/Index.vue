@@ -75,7 +75,6 @@
       />
     </div>
 
-    <!-- Dialog: Nueva venta -->
     <v-dialog v-model="dialogs.crear" max-width="800" persistent>
       <v-card rounded="lg" class="modern-card">
         <v-card-title class="pa-5" style="font-size:17px;font-weight:600;border-bottom:1px solid rgba(0,0,0,0.08);">
@@ -83,7 +82,6 @@
         </v-card-title>
         <v-card-text class="pa-5">
 
-          <!-- Paso 1: Cliente -->
           <div class="section-label mb-2">1. Seleccionar cliente</div>
           <v-autocomplete
             v-model="form.cliente_id"
@@ -95,7 +93,6 @@
             :error-messages="errors.cliente_id"
           />
 
-          <!-- Paso 2: Productos -->
           <div class="section-label mb-2">2. Agregar productos</div>
           <v-row align="center" class="mb-3">
             <v-col cols="5">
@@ -148,7 +145,6 @@
             </tbody>
           </v-table>
 
-          <!-- Paso 3: Plazo -->
           <div class="section-label mb-2">3. Plazo de pago</div>
           <v-row align="start">
             <v-col cols="12" sm="5">
@@ -240,7 +236,6 @@ const agregarItem = () => {
   if (!itemTemp.producto_id) return
   const p = props.productos.find(p => p.id === itemTemp.producto_id)
   if (!p) return
-  // Validar stock disponible
   const existe         = form.items.find(i => i.producto_id === p.id)
   const enCarrito      = existe ? existe.cantidad : 0
   const totalSolicitado = enCarrito + Number(itemTemp.cantidad)

@@ -29,10 +29,8 @@ const submitRegister = () => {
     <v-app theme="light">
         <div class="page-root">
 
-            <!-- ══════════ LADO IZQUIERDO — Formulario ══════════ -->
             <div class="side-left">
 
-                <!-- Tab switcher top -->
                 <div class="top-tabs">
                     <button class="top-tab" :class="{ active: activeTab === 'login' }"    @click="activeTab = 'login'">
                         Ingresar con mi cuenta
@@ -42,11 +40,9 @@ const submitRegister = () => {
                     </button>
                 </div>
 
-                <!-- Contenido del formulario -->
                 <div class="form-area">
                     <transition name="slide" mode="out-in">
 
-                        <!-- ── LOGIN ── -->
                         <div v-if="activeTab === 'login'" key="login">
                             <h1 class="form-heading">Inicio de Sesión</h1>
                             <p class="form-subheading">¡Te Damos la Bienvenida de Nuevo!</p>
@@ -116,7 +112,6 @@ const submitRegister = () => {
                             </form>
                         </div>
 
-                        <!-- ── REGISTRO ── -->
                         <div v-else key="register">
                             <h1 class="form-heading">Crear Cuenta</h1>
                             <p class="form-subheading">Completa los datos para registrarte</p>
@@ -188,10 +183,8 @@ const submitRegister = () => {
                 </div>
             </div>
 
-            <!-- ══════════ LADO DERECHO — Marca ══════════ -->
             <div class="side-right">
                 <div class="brand-center">
-                    <!-- Logo animado -->
                     <div class="brand-logo-wrap" >
                         <div class="brand-logo-ring" />
                         <div class="brand-logo-inner" >
@@ -199,11 +192,9 @@ const submitRegister = () => {
                         </div>
                     </div>
 
-                    <!-- Nombre -->
                     <div class="brand-name" >FastCredit</div>
                     <div class="brand-tagline">Lo mejor siempre</div>
 
-                    <!-- Stats decorativos -->
                     <div class="brand-stats">
                         <div class="brand-stat">
                             <div class="bstat-val">+1,240</div>
@@ -231,15 +222,11 @@ const submitRegister = () => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 * { font-family: 'Inter', sans-serif !important; box-sizing: border-box; }
 
-/* ── Layout ────────────────────────────────────────────────────────────── */
 .page-root {
     display: flex;
     min-height: 100vh;
 }
 
-/* ══════════════════════════════════════════════════════
-   LADO IZQUIERDO
-══════════════════════════════════════════════════════ */
 .side-left {
     width: 52%;
     min-height: 100vh;
@@ -249,7 +236,6 @@ const submitRegister = () => {
     border-right: 1px solid #e8edf2;
 }
 
-/* ── Tab switcher ────────────────────────────────────────────────────────── */
 .top-tabs {
     display: flex;
     border-bottom: 1px solid #e8edf2;
@@ -274,7 +260,6 @@ const submitRegister = () => {
 }
 .top-tab:not(.active):hover { background: #e2e8f0; color: #334155; }
 
-/* ── Área del formulario ─────────────────────────────────────────────────── */
 .form-area {
     flex: 1;
     display: flex;
@@ -298,7 +283,6 @@ const submitRegister = () => {
     margin: 0 0 32px;
 }
 
-/* ── Campos pill ─────────────────────────────────────────────────────────── */
 .field-wrap { margin-bottom: 20px; }
 .f-label {
     display: block;
@@ -353,7 +337,6 @@ const submitRegister = () => {
     padding-left: 18px;
 }
 
-/* ── Botones ─────────────────────────────────────────────────────────────── */
 .btn-primary {
     width: 100%;
     height: 50px;
@@ -391,7 +374,6 @@ const submitRegister = () => {
 .btn-register:hover { background: #6d28d9; }
 .btn-register:active { transform: scale(0.985); }
 
-/* ── Líneas de apoyo ─────────────────────────────────────────────────────── */
 .forgot-line {
     text-align: center;
     font-size: 13px;
@@ -423,7 +405,6 @@ const submitRegister = () => {
     margin-bottom: 16px;
 }
 
-/* ── Spinner ─────────────────────────────────────────────────────────────── */
 .btn-spinner {
     width: 18px; height: 18px;
     border: 2.5px solid rgba(255,255,255,0.35);
@@ -434,14 +415,10 @@ const submitRegister = () => {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Transición entre tabs ───────────────────────────────────────────────── */
 .slide-enter-active, .slide-leave-active { transition: opacity 0.18s ease, transform 0.18s ease; }
 .slide-enter-from { opacity: 0; transform: translateY(8px); }
 .slide-leave-to   { opacity: 0; transform: translateY(-8px); }
 
-/* ══════════════════════════════════════════════════════
-   LADO DERECHO — Marca
-══════════════════════════════════════════════════════ */
 .side-right {
     flex: 1;
     background: linear-gradient(145deg, #f8faff 0%, #eef3ff 50%, #f0f7ff 100%);
@@ -452,7 +429,6 @@ const submitRegister = () => {
     overflow: hidden;
 }
 
-/* Círculos decorativos de fondo */
 .side-right::before {
     content: '';
     position: absolute;
@@ -479,7 +455,6 @@ const submitRegister = () => {
     z-index: 1;
 }
 
-/* Logo con anillo giratorio */
 .brand-logo-wrap {
     position: relative;
     width: 140px; height: 140px;
@@ -506,7 +481,6 @@ const submitRegister = () => {
     box-shadow: 0 12px 40px rgba(29,111,224,0.35);
 }
 
-/* Nombre y tagline */
 .brand-name {
     font-size: 44px;
     font-weight: 800;
@@ -523,7 +497,6 @@ const submitRegister = () => {
     letter-spacing: 0.2px;
 }
 
-/* Stats decorativos */
 .brand-stats {
     display: flex;
     align-items: center;
@@ -554,7 +527,6 @@ const submitRegister = () => {
     background: #e2e8f0;
 }
 
-/* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
     .side-right { display: none; }
     .side-left  { width: 100%; }

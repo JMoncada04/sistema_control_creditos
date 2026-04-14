@@ -67,7 +67,6 @@
       />
     </div>
 
-    <!-- Dialog: Crear -->
     <v-dialog v-model="dialogs.crear" max-width="540">
       <v-card rounded="lg" class="modern-card">
         <v-card-title class="pa-5" style="font-size:17px;font-weight:600;border-bottom:1px solid rgba(0,0,0,0.08);">
@@ -100,7 +99,6 @@
       </v-card>
     </v-dialog>
 
-    <!-- Dialog: Editar -->
     <v-dialog v-model="dialogs.editar" max-width="480">
       <v-card rounded="lg" class="modern-card">
         <v-card-title class="pa-5" style="font-size:17px;font-weight:600;border-bottom:1px solid rgba(0,0,0,0.08);">
@@ -130,7 +128,6 @@
       </v-card>
     </v-dialog>
 
-    <!-- Dialog: Eliminar -->
     <v-dialog v-model="dialogs.eliminar" max-width="400">
       <v-card rounded="lg" class="modern-card">
         <v-card-title class="pa-5" style="font-size:16px;font-weight:600;">Eliminar producto</v-card-title>

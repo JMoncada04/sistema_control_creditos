@@ -29,7 +29,6 @@ const submit = () => {
     <v-app theme="light">
         <div class="page-root">
 
-            <!-- ══════════ LADO IZQUIERDO — Formulario ══════════ -->
             <div class="side-left">
                 <div class="top-brand">
                     <div class="brand-logo-mini">
@@ -101,7 +100,6 @@ const submit = () => {
                 </div>
             </div>
 
-            <!-- ══════════ LADO DERECHO — Marca ══════════ -->
             <div class="side-right">
                 <div class="brand-center">
                     <div class="brand-logo-wrap">

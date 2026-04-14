@@ -12,7 +12,6 @@ const submit = () => { form.post(route('password.email')) }
     <v-app theme="light">
         <div class="page-root">
 
-            <!-- ══════════ LADO IZQUIERDO — Formulario ══════════ -->
             <div class="side-left">
                 <div class="top-brand">
                     <div class="brand-logo-mini">
@@ -65,7 +64,6 @@ const submit = () => { form.post(route('password.email')) }
                 </div>
             </div>
 
-            <!-- ══════════ LADO DERECHO — Marca ══════════ -->
             <div class="side-right">
                 <div class="brand-center">
                     <div class="brand-logo-wrap">
@@ -94,7 +92,6 @@ const submit = () => { form.post(route('password.email')) }
 
 .page-root { display: flex; min-height: 100vh; }
 
-/* ── Lado izquierdo ──────────────────────────────────────────────────────── */
 .side-left {
     width: 52%; min-height: 100vh; background: #ffffff;
     display: flex; flex-direction: column; border-right: 1px solid #e8edf2;
@@ -126,7 +123,6 @@ const submit = () => { form.post(route('password.email')) }
 .form-heading { font-size: 28px; font-weight: 700; color: #1d6fe0; margin: 0 0 6px; letter-spacing: -0.4px; }
 .form-subheading { font-size: 14px; color: #64748b; margin: 0 0 28px; line-height: 1.6; }
 
-/* Campos ─────────────────────────────────────────────────────────────────── */
 .field-wrap { margin-bottom: 20px; }
 .f-label { display: block; font-size: 13px; font-weight: 500; color: #334155; margin-bottom: 7px; }
 .input-box {
@@ -151,7 +147,6 @@ const submit = () => { form.post(route('password.email')) }
     border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-bottom: 20px;
 }
 
-/* Botón ──────────────────────────────────────────────────────────────────── */
 .btn-primary {
     width: 100%; height: 50px;
     background: linear-gradient(180deg, #060e1f 0%, #0d1f3c 60%, #060e1f 100%);
@@ -173,7 +168,6 @@ const submit = () => { form.post(route('password.email')) }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Lado derecho ─────────────────────────────────────────────────────────── */
 .side-right {
     flex: 1;
     background: linear-gradient(145deg, #f8faff 0%, #eef3ff 50%, #f0f7ff 100%);

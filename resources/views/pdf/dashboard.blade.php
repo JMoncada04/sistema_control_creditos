@@ -36,18 +36,12 @@
   .badge-pendiente{ background:#fef9c3; color:#854d0e; }
   .badge-pagada   { background:#dcfce7; color:#166534; }
   .money { font-family: DejaVu Sans Mono, monospace; }
-  .two-col { display:flex; gap:20px; margin-bottom:24px; }
-  .two-col > div { flex:1; }
-  .alert-row { display:flex; gap:8px; align-items:flex-start; padding:8px 0; border-bottom:1px solid #f1f5f9; }
-  .alert-dot  { width:8px; height:8px; border-radius:50%; background:#ef4444; margin-top:3px; flex-shrink:0; }
-  .alert-text { font-size:10px; color:#334155; line-height:1.5; }
   .footer { margin-top:16px; padding-top:12px; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; font-size:9px; color:#94a3b8; }
   .page-break { page-break-before:always; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div class="logo-area">
@@ -67,10 +61,8 @@
   <hr class="header-divider">
 </div>
 
-<!-- CONTENT -->
 <div class="content">
 
-  <!-- STATS -->
   <div class="section-title">Resumen general</div>
   <div class="stats-grid">
     <div class="stat-card">
@@ -91,7 +83,6 @@
     </div>
   </div>
 
-  <!-- CUOTAS PROXIMAS -->
   <div class="section-title">Cuotas próximas a vencer (próximos 7 días)</div>
   @if($proximasCuotas->count())
   <table>
@@ -118,18 +109,6 @@
   <p style="color:#94a3b8;font-size:11px;margin-bottom:24px;">Sin cuotas próximas a vencer.</p>
   @endif
 
-  <!-- ALERTAS MORA -->
-  @if($alertasMora->count())
-  <div class="section-title">Alertas activas — Cuotas en mora</div>
-  @foreach($alertasMora as $a)
-  <div class="alert-row">
-    <div class="alert-dot"></div>
-    <div class="alert-text"><strong>{{ $a['cliente'] }}</strong> — Venta #{{ $a['venta'] }}, Cuota {{ $a['cuota'] }} vencida.</div>
-  </div>
-  @endforeach
-  @endif
-
-  <!-- FOOTER -->
   <div class="footer">
     <span>CreditPro · Sistema de Control de Créditos</span>
     <span>Generado automáticamente · {{ $fecha }}</span>
