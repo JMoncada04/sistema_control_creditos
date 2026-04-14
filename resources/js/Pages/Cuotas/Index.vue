@@ -61,8 +61,8 @@
               <span :class="'badge-' + c.estado.toLowerCase()">{{ c.estado }}</span>
             </td>
             <td>
-              <v-btn v-if="c.estado !== 'Pagada'" size="small" color="success" variant="tonal"
-                prepend-icon="mdi-cash" rounded @click="abrirPago(c)">
+              <v-btn v-if="c.estado !== 'Pagada'" size="small" color="success" variant="flat"
+                prepend-icon="mdi-cash" rounded="lg" @click="abrirPago(c)">
                 Pagar
               </v-btn>
               <v-icon v-else color="success" size="20">mdi-check-circle</v-icon>
@@ -171,7 +171,7 @@
                   <v-text-field v-model="tarjeta.numero" label="Número de tarjeta"
                     variant="outlined" density="comfortable"
                     prepend-icon="mdi-credit-card-outline"
-                    maxlength="16" placeholder="1234567890123456"
+                    maxlength="16" hint="16 dígitos" persistent-hint
                     @keypress="soloNumerosKey"
                     :error-messages="errors.numero_tarjeta" />
                 </v-col>
@@ -179,7 +179,7 @@
                   <v-text-field v-model="tarjeta.titular" label="Nombre del titular"
                     variant="outlined" density="comfortable"
                     prepend-icon="mdi-account-outline"
-                    placeholder="Como aparece en la tarjeta"
+                    hint="Como aparece en la tarjeta" persistent-hint
                     @keypress="soloLetrasKey"
                     :error-messages="errors.titular_tarjeta" />
                 </v-col>
@@ -187,7 +187,7 @@
                   <v-text-field v-model="tarjeta.expiracion" label="Fecha expiración"
                     variant="outlined" density="comfortable"
                     prepend-icon="mdi-calendar-outline"
-                    placeholder="MM/AA" maxlength="5"
+                    hint="MM/AA" persistent-hint maxlength="5"
                     @input="formatearExpiracion"
                     :error-messages="errors.expiracion_tarjeta" />
                 </v-col>
@@ -199,7 +199,7 @@
                     :append-inner-icon="mostrarCvv ? 'mdi-eye-off' : 'mdi-eye'"
                     @click:append-inner="mostrarCvv = !mostrarCvv"
                     @keypress="soloNumerosKey"
-                    maxlength="3" placeholder="•••"
+                    maxlength="3" hint="3 dígitos" persistent-hint
                     :error-messages="errors.cvv_tarjeta" />
                 </v-col>
               </v-row>
@@ -239,8 +239,8 @@
 
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="dialogs.pago = false">Cancelar</v-btn>
-          <v-btn color="indigo"  variant="flat" rounded="lg" prepend-icon="mdi-check"
+          <v-btn variant="outlined" rounded="lg" @click="dialogs.pago = false">Cancelar</v-btn>
+          <v-btn color="indigo" variant="flat" rounded="lg" prepend-icon="mdi-check"
             :loading="loading" @click="confirmarPago">
             Confirmar pago
           </v-btn>

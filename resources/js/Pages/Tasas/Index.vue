@@ -37,7 +37,7 @@
                            :loading="loading" @click="guardar">
                         {{ editando ? 'Actualizar tasa' : 'Guardar tasa' }}
                     </v-btn>
-                    <v-btn v-if="editando" variant="text" block class="mt-2" @click="cancelarEdicion">
+                    <v-btn v-if="editando" variant="outlined" rounded="lg" block class="mt-2" @click="cancelarEdicion">
                         Cancelar edición
                     </v-btn>
                 </v-card>
@@ -101,7 +101,7 @@
                 </v-card-text>
                 <v-card-actions class="pa-4 pt-0">
                     <v-spacer />
-                    <v-btn variant="text" @click="dialogs.eliminar = false">Cancelar</v-btn>
+                    <v-btn variant="outlined" rounded="lg" @click="dialogs.eliminar = false">Cancelar</v-btn>
                     <v-btn color="error" variant="flat" rounded="lg" :loading="loading" @click="eliminarTasa">Eliminar</v-btn>
                 </v-card-actions>
             </v-card>

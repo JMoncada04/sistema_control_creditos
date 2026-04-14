@@ -13,7 +13,7 @@
         />
       </v-col>
       <v-col class="text-right">
-        <v-btn color="indigo" prepend-icon="mdi-plus" rounded="lg" @click="dialogs.crear = true">
+        <v-btn color="indigo" variant="flat" prepend-icon="mdi-plus" rounded="lg" @click="dialogs.crear = true">
           Nuevo producto
         </v-btn>
       </v-col>
@@ -93,7 +93,7 @@
         </v-card-text>
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="cerrarCrear">Cancelar</v-btn>
+          <v-btn variant="outlined" rounded="lg" @click="cerrarCrear">Cancelar</v-btn>
           <v-btn color="indigo" variant="flat" rounded="lg" :loading="loading" @click="guardarProducto">Guardar</v-btn>
         </v-card-actions>
       </v-card>
@@ -122,8 +122,8 @@
         </v-card-text>
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="dialogs.editar = false">Cancelar</v-btn>
-          <v-btn color="primary" variant="flat" rounded="lg" :loading="loading" @click="actualizarProducto">Guardar cambios</v-btn>
+          <v-btn variant="outlined" rounded="lg" @click="dialogs.editar = false">Cancelar</v-btn>
+          <v-btn color="indigo" variant="flat" rounded="lg" :loading="loading" @click="actualizarProducto">Guardar cambios</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -136,7 +136,7 @@
         </v-card-text>
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="dialogs.eliminar = false">Cancelar</v-btn>
+          <v-btn variant="outlined" rounded="lg" @click="dialogs.eliminar = false">Cancelar</v-btn>
           <v-btn color="error" variant="flat" rounded="lg" :loading="loading" @click="eliminarProducto">Eliminar</v-btn>
         </v-card-actions>
       </v-card>

@@ -13,7 +13,7 @@
         />
       </v-col>
       <v-col class="text-right">
-        <v-btn color="indigo" prepend-icon="mdi-account-plus" rounded="lg" @click="dialogs.crear = true">
+        <v-btn color="indigo" variant="flat" prepend-icon="mdi-account-plus" rounded="lg" @click="dialogs.crear = true">
           Nuevo cliente
         </v-btn>
       </v-col>
@@ -118,7 +118,7 @@
         </v-card-text>
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="cerrarCrear">Cancelar</v-btn>
+          <v-btn variant="outlined" rounded="lg" @click="cerrarCrear">Cancelar</v-btn>
           <v-btn color="indigo" variant="flat" rounded="lg" :loading="loading" @click="guardarCliente">
             Registrar
           </v-btn>
@@ -147,7 +147,7 @@
         </v-card-text>
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="dialogs.editar = false">Cancelar</v-btn>
+          <v-btn variant="outlined" rounded="lg" @click="dialogs.editar = false">Cancelar</v-btn>
           <v-btn color="indigo" variant="flat" rounded="lg" :loading="loading" @click="actualizarCliente">
             Guardar cambios
           </v-btn>

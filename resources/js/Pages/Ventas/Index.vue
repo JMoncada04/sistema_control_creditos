@@ -13,7 +13,7 @@
         />
       </v-col>
       <v-col class="text-right">
-        <v-btn color="indigo" prepend-icon="mdi-cart-plus" rounded="lg" @click="dialogs.crear = true">
+        <v-btn color="indigo" variant="flat" prepend-icon="mdi-cart-plus" rounded="lg" @click="dialogs.crear = true">
           Nueva venta
         </v-btn>
       </v-col>
@@ -182,7 +182,7 @@
         </v-card-text>
         <v-card-actions class="pa-4 pt-0">
           <v-spacer />
-          <v-btn variant="text" @click="cerrarCrear">Cancelar</v-btn>
+          <v-btn variant="outlined" rounded="lg" @click="cerrarCrear">Cancelar</v-btn>
           <v-btn color="indigo" variant="flat" rounded="lg" prepend-icon="mdi-check-circle" :loading="loading" @click="guardarVenta">
             Confirmar y generar plan de cuotas
           </v-btn>
