@@ -34,6 +34,21 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'notificaciones' => function () use ($request) {
+                if (! $request->user()) return [];
+                return \App\Models\Producto::where('created_at', '>=', now()->subDays(7))
+                    ->orderByDesc('created_at')
+                    ->take(10)
+                    ->get(['id', 'nombre', 'codigo', 'created_at'])
+                    ->map(fn ($p) => [
+                        'id'      => $p->id,
+                        'mensaje' => 'Nuevo producto: ' . $p->nombre,
+                        'codigo'  => $p->codigo,
+                        'tiempo'  => $p->created_at->diffForHumans(),
+                    ])
+                    ->values()
+                    ->toArray();
+            },
         ];
     }
 }

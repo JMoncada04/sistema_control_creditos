@@ -19,7 +19,7 @@ export default createVuetify({
             light: {
                 dark: false,
                 colors: {
-                    primary: '#22c55e', // Verde principal
+                    primary: '#d9b87e', // Verde principal
                     secondary: '#fbbf24', // Amarillo secundario
                     accent: '#22c55e',
                     error: '#ef4444',
@@ -47,7 +47,7 @@ export default createVuetify({
             dark: {
                 dark: true,
                 colors: {
-                    primary: '#22c55e',
+                    primary: '#000000',
                     secondary: '#fbbf24',
                     accent: '#22c55e',
                     error: '#ef4444',
